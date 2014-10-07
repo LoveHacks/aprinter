@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2013 Ambroz Bizjak
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  * 1. Redistributions of source code must retain the above copyright
@@ -9,7 +9,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -304,7 +304,7 @@ using PrinterParams = PrinterMainParams<
         >
     >,
     ConfigList,
-    
+
     /*
      * Axes.
      */
@@ -459,12 +459,12 @@ using PrinterParams = PrinterMainParams<
             PrinterMainNoMicroStepParams
         >
     >,
-    
+
     /*
      * Transform and virtual axes.
      */
     PrinterMainNoTransformParams,
-    
+
     /*
      * Heaters.
      */
@@ -508,7 +508,7 @@ using PrinterParams = PrinterMainParams<
             'B', // Name
             140, // SetMCommand
             190, // WaitMCommand
-            DuePinA0, // AdcPin
+            DuePinA2, // AdcPin
             GenericThermistorService< // Thermistor
                 BedHeaterThermistorResistorR,
                 BedHeaterThermistorR0,
@@ -543,7 +543,7 @@ using PrinterParams = PrinterMainParams<
             'U', // Name
             404, // SetMCommand
             409, // WaitMCommand
-            DuePinA2, // AdcPin
+            DuePinA0, // AdcPin
             GenericThermistorService< // Thermistor
                 UxtruderHeaterThermistorResistorR,
                 UxtruderHeaterThermistorR0,
@@ -575,7 +575,7 @@ using PrinterParams = PrinterMainParams<
             >
         >
     >,
-    
+
     /*
      * Fans.
      */
@@ -651,7 +651,7 @@ struct MyContext {
     using EventLoop = MyLoop;
     using Pins = MyPins;
     using Adc = MyAdc;
-    
+
     void check () const;
 };
 
@@ -715,7 +715,7 @@ extern "C" {
     {
         return -1;
     }
-    
+
     __attribute__((used))
     int _write (int file, char *ptr, int len)
     {
@@ -730,7 +730,7 @@ extern "C" {
 #endif
         return len;
     }
-    
+
     __attribute__((used))
     int _close (int file)
     {
@@ -759,15 +759,15 @@ extern "C" {
 int main ()
 {
     platform_init();
-    
+
     MyContext c;
-    
+
     MyDebugObjectGroup::init(c);
     MyClock::init(c);
     MyLoop::init(c);
     MyPins::init(c);
     MyAdc::init(c);
     MyPrinter::init(c);
-    
+
     MyLoop::run(c);
 }
